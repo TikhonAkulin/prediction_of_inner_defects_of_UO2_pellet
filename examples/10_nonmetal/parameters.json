@@ -1,0 +1,22 @@
+{
+  "R_MM": 5.15,
+  "H_MM": 8.5,
+  "COUNTS": [
+    25,
+    50,
+    100,
+    200
+  ],
+  "SEED": 42,
+  "L0_UM": 1.0,
+  "CV": 0.2,
+  "INPUT_CSV": null,
+  "OUTPUT_ROOT": "uo2_defect_results",
+  "ASPECT": 2.0,
+  "DENSITY_RATIO": 1.0,
+  "NAME": "10_nonmetal",
+  "ROLE": "inclusion",
+  "RESULT_LABEL": "Изменение массы / (ρ матрицы · L₀³)",
+  "N": 200,
+  "effective_seed": 42
+}

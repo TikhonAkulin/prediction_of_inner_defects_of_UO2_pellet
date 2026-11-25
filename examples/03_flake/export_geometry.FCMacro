@@ -1,0 +1,33 @@
+# Выполняется внешним FreeCAD. Для трещин сохраняются поверхности затравок;
+# для включений — матрица и отдельные тела второй фазы. Файл рядом с CSV.
+import FreeCAD as App, Part, csv, json
+from pathlib import Path
+p = Path(__file__).resolve().parent
+cfg = json.loads((p/'parameters.json').read_text(encoding='utf8'))
+for count in sorted(set(cfg['COUNTS'])):
+    base = Part.makeCylinder(cfg['R_MM'],cfg['H_MM'])
+    shapes=[]
+    with (p/f'sites_N{count}.csv').open(encoding='utf8') as f:
+        for row in csv.DictReader(f):
+            center=App.Vector(*[float(row[k]) for k in ('x_mm','y_mm','z_mm')])
+            a,b,c=[float(row[k])/1000 for k in ('a_um','b_um','c_um')]
+            if cfg['ROLE']=='crack':
+                normal=App.Vector(*[float(row[k]) for k in ('nx','ny','nz')])
+                shape=Part.Face(Part.Wire([Part.makeCircle(a,center,normal)]))
+            elif min(a,b,c)>0:
+                if a==b==c: shape=Part.makeSphere(a,center)
+                else:
+                    m=App.Matrix(); m.A11=a; m.A22=b; m.A33=c
+                    shape=Part.makeSphere(1).transformGeometry(m)
+                    shape.translate(center)
+            else: continue
+            shapes.append(shape)
+    if cfg['ROLE']=='crack':
+        body=Part.Compound([base]+shapes)
+    elif shapes:
+        matrix=base
+        for tool in shapes: matrix=matrix.cut(tool)
+        body=Part.Compound([matrix]+shapes) if cfg['ROLE']=='inclusion' else matrix
+    else: body=base
+    if body.isNull() or not body.isValid(): raise ValueError('Проверка формы FreeCAD не пройдена')
+    body.exportStep(str(p/f'model_N{count}.step'))

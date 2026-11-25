@@ -1,0 +1,6 @@
+A,open_edges,accessible_nodes,isolated_nodes,isolated_clusters,through
+0.0,540,216,0,0,True
+0.5,316,215,1,1,True
+1.0,208,201,15,11,True
+2.0,81,81,135,81,False
+4.0,10,72,144,137,False

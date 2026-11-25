@@ -1,0 +1,23 @@
+{
+  "R_MM": 5.15,
+  "H_MM": 8.5,
+  "COUNTS": [
+    25,
+    50,
+    100,
+    200
+  ],
+  "SEED": 42,
+  "L0_UM": 1.0,
+  "CV": 0.2,
+  "INPUT_CSV": null,
+  "OUTPUT_ROOT": "uo2_defect_results",
+  "CORE_RATIO": 0.5,
+  "KT_CORE": 1.0,
+  "KT_RIM": 0.5,
+  "NAME": "11_grains",
+  "ROLE": "field",
+  "RESULT_LABEL": "Конечный размер зерна / L₀",
+  "N": 200,
+  "effective_seed": 42
+}

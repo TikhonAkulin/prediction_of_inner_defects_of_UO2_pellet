@@ -1,0 +1,22 @@
+{
+  "R_MM": 5.15,
+  "H_MM": 8.5,
+  "COUNTS": [
+    25,
+    50,
+    100,
+    200
+  ],
+  "SEED": 42,
+  "L0_UM": 1.0,
+  "CV": 0.2,
+  "INPUT_CSV": null,
+  "OUTPUT_ROOT": "uo2_defect_results",
+  "VOID_YIELD": 1.0,
+  "LINEAR_FACTOR": 1.0,
+  "NAME": "04_pore_former",
+  "ROLE": "cavity",
+  "RESULT_LABEL": "Объём отпечатка (мкм³)",
+  "N": 200,
+  "effective_seed": 42
+}
